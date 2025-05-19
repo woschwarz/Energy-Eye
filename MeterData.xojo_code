@@ -5,6 +5,10 @@ Protected Class MeterData
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		mID As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		mValue As Integer
 	#tag EndProperty
 

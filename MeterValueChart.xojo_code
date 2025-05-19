@@ -2,12 +2,50 @@
 Protected Class MeterValueChart
 Inherits MobileChart
 	#tag Method, Flags = &h0
+		Function CalculateMonthlyConsumption(dates() As DateTime, values() As Double) As Dictionary
+		  Var result As New Dictionary
+		  
+		  If dates.Count <> values.Count Or dates.Count = 0 Then Return result
+		  
+		  Var i As Integer
+		  
+		  // Calculate start and end time for each month
+		  Var monthData As New Dictionary // key: "YYYY-MM", value: Pair(DateTime, DateTime)
+		  
+		  For i = 0 To dates.LastIndex
+		    Var mKey As String = Str(dates(i).Year) + "-" + ("0" + Str(dates(i).Month).Right(2))
+		    
+		    If Not monthData.HasKey(mKey) Then
+		      Var firstDay As New DateTime(dates(i).Year, dates(i).Month, 1, 0, 0, 0)
+		      Var lastDay As New DateTime(dates(i).Year, dates(i).Month, DaysInMonth(dates(i).Year, dates(i).Month), 23, 59, 59)
+		      monthData.Value(mKey) = New Dictionary("start" : firstDay, "end" : lastDay)
+		    End If
+		  Next
+		  
+		  // Calculate the consumption for each month now
+		  For Each mKey As String In monthData.Keys
+		    Var monthDict As Dictionary = monthData.Value(mKey)
+		    Var startDate As DateTime = monthDict.Value("start")
+		    Var endDate As DateTime = monthDict.Value("end")
+		    
+		    // Calculate interpolated values
+		    Var startValue As Double = InterpolateValueAt(dates, values, startDate)
+		    Var endValue As Double = InterpolateValueAt(dates, values, endDate)
+		    
+		    result.Value(mKey) = endValue - startValue
+		  Next
+		  
+		  Return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub CreateChart(months() As String, consumption() As Double)
 		  Self.RemoveAllDatasets
 		  Self.RemoveAllLabels
 		  
-		  Self.Title = "monthly consumption" ' Title 
-		  Self.Mode = MobileChart.Modes.Bar ' Diagramm-Type
+		  Self.Title = "Monthly Consumption" 'Title 
+		  Self.Mode = MobileChart.Modes.Bar 'Diagramm-Type
 		  
 		  Var monthValue() As Double
 		  
@@ -17,48 +55,130 @@ Inherits MobileChart
 		    Self.AddLabel(months(i))
 		  Next
 		  
-		  Var StromDS As New ChartLinearDataset("Stromverbrauch (kWh)", Color.Blue, True, monthValue)
+		  Var energyDS As New ChartLinearDataset("Consumption", Color.Blue, True, monthValue)
 		  
 		  // Add DataSet to chart
-		  Self.AddDatasets(StromDS)
+		  Self.AddDatasets(energyDS)
 		  
 		  Self.Refresh 
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function DaysInMonth(year As Integer, month As Integer) As Integer
+		  Select Case month
+		  Case 1, 3, 5, 7, 8, 10, 12
+		    Return 31
+		  Case 4, 6, 9, 11
+		    Return 30
+		  Case 2
+		    If (year Mod 4 = 0 And (year Mod 100 <> 0 Or year Mod 400 = 0)) Then
+		      Return 29
+		    Else
+		      Return 28
+		    End If
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ForecastCurrentMonth(dates() As DateTime, values() As Double) As Double
+		  // ForeCast not yet used, for future development
+		  
+		  If dates.Count < 2 Then Return 0.0
+		  
+		  Var today As DateTime = DateTime.Now
+		  Var thisMonthStart As New DateTime(today.Year, today.Month, 1, 0, 0, 0)
+		  
+		  // Find measured values in the current month
+		  Var monthDates() As DateTime
+		  Var monthValues() As Double
+		  
+		  For i As Integer = 0 To dates.LastIndex
+		    If dates(i) >= thisMonthStart And dates(i) <= today Then
+		      monthDates.Add(dates(i))
+		      monthValues.Add(values(i))
+		    End If
+		  Next
+		  
+		  If monthDates.Count < 2 Then
+		    Return 0.0 // No meaningful forecast possible
+		  End If
+		  
+		  // Consumption from the first to the last measured value
+		  Var startValue As Double = monthValues(0)
+		  Var endValue As Double = monthValues(monthValues.LastIndex)
+		  Var usedSoFar As Double = endValue - startValue
+		  
+		  // Days between readings
+		  Var daysSoFar As Double = monthDates(monthDates.LastIndex).SecondsFrom1970 - monthDates(0).SecondsFrom1970
+		  daysSoFar = daysSoFar / (60 * 60 * 24) // in Days
+		  
+		  If daysSoFar <= 0 Then Return 0.0
+		  
+		  // Extrapolation
+		  Var totalDays As Integer = DaysInMonth(today.Year, today.Month)
+		  Var estimatedTotal As Double = usedSoFar / daysSoFar * totalDays
+		  
+		  Return estimatedTotal
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function InterpolateValueAt(dates() As DateTime, values() As Double, targetDate As DateTime) As Double
+		  If targetDate <= dates(0) Then Return values(0)
+		  If targetDate >= dates(dates.LastIndex) Then Return values(values.LastIndex)
+		  
+		  For i As Integer = 0 To dates.LastIndex - 1
+		    If dates(i) <= targetDate And dates(i+1) >= targetDate Then
+		      Var totalSeconds As Double = dates(i+1).SecondsFrom1970 - dates(i).SecondsFrom1970
+		      Var partSeconds As Double = targetDate.SecondsFrom1970 - dates(i).SecondsFrom1970
+		      Var fraction As Double = partSeconds / totalSeconds
+		      Return values(i) + fraction * (values(i+1) - values(i))
+		    End If
+		  Next
+		  
+		  Return values(values.LastIndex)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub LoadValues()
 		  If App.mdb.Connect Then
-		    
 		    Try
-		      Var rs As RowSet = App.mdb.SelectSQL("SELECT strftime('%Y-%m', mDate) AS month, MAX(mValue) - MIN(mValue) AS consumption FROM measurements GROUP BY month ORDER BY month")
+		      // Get All measurements from Database
+		      Var rs As RowSet = App.mdb.SelectSQL("SELECT mDate, mValue FROM measurements ORDER BY mDate")
+		      
+		      Var data() As DateTime
+		      Var values() As Double
+		      
+		      While Not rs.AfterLastRow
+		        data.Add(DateTime.FromString(rs.Column("mDate").StringValue))
+		        values.Add(rs.Column("mValue").DoubleValue)
+		        rs.MoveToNextRow
+		      Wend
+		      rs.Close
+		      
+		      Var monthlyConsumption As Dictionary = CalculateMonthlyConsumption(data, values)
 		      
 		      Var month() As String
 		      Var consumption() As Double
 		      
-		      While Not rs.AfterLastRow
-		        month.Add(rs.Column("month").StringValue) ' z. B. "2025-01"
-		        consumption.Add(rs.Column("consumption").DoubleValue)
-		        System.DebugLog(rs.Column("month").StringValue+ " " + rs.Column("consumption").StringValue)
-		        rs.MoveToNextRow
-		      Wend
+		      For Each key As String In monthlyConsumption.Keys
+		        month.Add(key)
+		        consumption.Add(monthlyConsumption.Value(key))
+		      Next
 		      
-		      rs.Close
-		      //App.mdb.Close
-		      
-		      // Now we can draw the chart
-		      If month.Count >= 2 And consumption.Count >= 2 Then
+		      // Create chart, but only if there is enough data
+		      If month.Count >= 2 Then
 		        CreateChart(month, consumption)
 		      Else
-		        MessageBox("Not enough Data!")
+		        MessageBox("Not enough data!")
 		      End If
 		      
 		    Catch e As DatabaseException
-		      MessageBox("Error when retrieving the data: " + e.Message)
+		      MessageBox("DB error: " + e.Message)
 		    End Try
-		    
-		  Else
-		    'MessageBox("Error with the database connection: " + App.mdb.ErrorMessage)
 		  End If
 		End Sub
 	#tag EndMethod

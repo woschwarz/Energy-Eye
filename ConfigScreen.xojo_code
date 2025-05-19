@@ -218,12 +218,12 @@ Begin MobileScreen ConfigScreen
       Alignment       =   1
       AutoLayout      =   lblCopyright, 4, lblMadewithXojo, 3, False, +1.00, 4, 1, 5, , True
       AutoLayout      =   lblCopyright, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblCopyright, 1, lblMeterUnit, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   lblCopyright, 7, , 0, False, +1.00, 4, 1, 308, , True
+      AutoLayout      =   lblCopyright, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   lblCopyright, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   30
+      Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
@@ -238,7 +238,7 @@ Begin MobileScreen ConfigScreen
       TintColor       =   &c000000
       Top             =   749
       Visible         =   True
-      Width           =   308
+      Width           =   335
       _ClosingFired   =   False
    End
    Begin MobileLabel lblMadeWithXojo
@@ -247,12 +247,12 @@ Begin MobileScreen ConfigScreen
       Alignment       =   1
       AutoLayout      =   lblMadeWithXojo, 4, BottomLayoutGuide, 4, False, +1.00, 4, 1, -*kStdControlGapV, , True
       AutoLayout      =   lblMadeWithXojo, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblMadeWithXojo, 1, lblCopyright, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   lblMadeWithXojo, 7, , 0, False, +1.00, 4, 1, 308, , True
+      AutoLayout      =   lblMadeWithXojo, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   lblMadeWithXojo, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   30
+      Left            =   20
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
@@ -267,17 +267,17 @@ Begin MobileScreen ConfigScreen
       TintColor       =   &c000000
       Top             =   774
       Visible         =   True
-      Width           =   308
+      Width           =   335
       _ClosingFired   =   False
    End
    Begin MobileLabel lblMeterID
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblMeterID, 1, lblMadewithXojo, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   lblMeterID, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   lblMeterID, 3, <Parent>, 3, False, +1.00, 4, 1, 296, , True
       AutoLayout      =   lblMeterID, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterID, 1, lblMeterUnit, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   lblMeterID, 3, <Parent>, 3, False, +1.00, 4, 1, 296, , True
+      AutoLayout      =   lblMeterID, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30

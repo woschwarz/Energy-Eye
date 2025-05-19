@@ -23,7 +23,7 @@ Begin MobileScreen ChartScreen
       AutoLayout      =   MeterValueChart1, 4, BottomLayoutGuide, 4, False, +1.00, 4, 1, -*kStdControlGapV, , True
       AutoLayout      =   MeterValueChart1, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
       AutoLayout      =   MeterValueChart1, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
-      AutoLayout      =   MeterValueChart1, 3, <Parent>, 3, False, +1.00, 4, 1, 80, , True
+      AutoLayout      =   MeterValueChart1, 3, <Parent>, 3, False, +1.00, 4, 1, 110, , True
       Backdrop        =   0
       BackgroundColor =   &c000000
       ControlCount    =   0
@@ -33,7 +33,7 @@ Begin MobileScreen ChartScreen
       Format          =   ""
       GridColor       =   &c000000
       HasLegend       =   False
-      Height          =   724
+      Height          =   450
       IsGridVisible   =   False
       IsXAxisVisible  =   False
       IsYAxisVisible  =   False
@@ -52,7 +52,7 @@ Begin MobileScreen ChartScreen
       Title           =   ""
       TitleColor      =   &c000000
       TitleFontSize   =   0.0
-      Top             =   80
+      Top             =   110
       Visible         =   True
       Width           =   280
       _ClosingFired   =   False

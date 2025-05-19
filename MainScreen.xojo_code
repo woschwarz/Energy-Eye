@@ -1,5 +1,5 @@
 #tag MobileScreen
-Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
+Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTableDataSourceEditing
    BackButtonCaption=   ""
    Compatibility   =   ""
    ControlCount    =   0
@@ -17,20 +17,20 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
    Begin MobileDateTimePicker edtDate
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   edtDate, 8, , 0, False, +1.00, 4, 1, 52, , True
-      AutoLayout      =   edtDate, 2, <Parent>, 2, False, +1.00, 4, 1, -5, , True
-      AutoLayout      =   edtDate, 3, <Parent>, 3, False, +1.00, 4, 1, 167, , True
+      AutoLayout      =   edtDate, 8, , 0, False, +1.00, 4, 1, 32, , True
+      AutoLayout      =   edtDate, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   edtDate, 3, lblDate, 3, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   edtDate, 7, , 0, False, +1.00, 4, 1, 134, , True
       ControlCount    =   0
       DisplayMode     =   1
       DisplayStyle    =   1
       Enabled         =   True
-      Height          =   52
-      Left            =   289
+      Height          =   32
+      Left            =   274
       LockedInPosition=   False
-      Scope           =   0
+      Scope           =   2
       TintColor       =   &c000000
-      Top             =   167
+      Top             =   208
       Visible         =   True
       Width           =   134
       _ClosingFired   =   False
@@ -43,22 +43,22 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AllowSpellChecking=   False
       AutoCapitalizationType=   0
       AutoLayout      =   edtValue, 7, , 0, False, +1.00, 4, 1, 122, , True
-      AutoLayout      =   edtValue, 2, <Parent>, 2, False, +1.00, 4, 1, -13, , True
-      AutoLayout      =   edtValue, 11, lblValue, 11, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtValue, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
       AutoLayout      =   edtValue, 8, , 0, False, +1.00, 4, 1, 34, , True
+      AutoLayout      =   edtValue, 3, lblValue, 3, False, +1.00, 4, 1, 0, , True
       BorderStyle     =   3
       ControlCount    =   0
       Enabled         =   True
       Height          =   34
       Hint            =   ""
       InputType       =   4
-      Left            =   293
+      Left            =   286
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       ReturnCaption   =   0
-      Scope           =   0
+      Scope           =   2
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
@@ -67,7 +67,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   230
+      Top             =   263
       Visible         =   True
       Width           =   122
       _ClosingFired   =   False
@@ -80,20 +80,20 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AutoLayout      =   DataTable, 4, BottomLayoutGuide, 4, False, +1.00, 4, 1, -*kStdControlGapV, , True
       AutoLayout      =   DataTable, 1, <Parent>, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   DataTable, 2, <Parent>, 2, False, +1.00, 4, 1, -13, , True
-      AutoLayout      =   DataTable, 3, btnAdd, 4, False, +1.00, 4, 1, 35, , True
+      AutoLayout      =   DataTable, 3, <Parent>, 3, False, +1.00, 4, 1, 368, , True
       ControlCount    =   0
       EditingEnabled  =   False
       EditingEnabled  =   False
       Enabled         =   True
       EstimatedRowHeight=   -1
       Format          =   0
-      Height          =   581
+      Height          =   550
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
       TintColor       =   &c000000
-      Top             =   337
+      Top             =   368
       Visible         =   True
       Width           =   415
       _ClosingFired   =   False
@@ -105,7 +105,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       Alignment       =   0
       AutoLayout      =   lblDate, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   lblDate, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   lblDate, 3, edtMeterName, 4, False, +1.00, 4, 1, 25, , True
+      AutoLayout      =   lblDate, 3, edtMeterName, 4, False, +1.00, 4, 1, 20, , True
       AutoLayout      =   lblDate, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
@@ -114,7 +114,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
-      Scope           =   0
+      Scope           =   2
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
@@ -123,7 +123,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   177
+      Top             =   208
       Visible         =   True
       Width           =   100
       _ClosingFired   =   False
@@ -133,9 +133,9 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AccessibilityLabel=   ""
       Alignment       =   0
       AutoLayout      =   lblValue, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblValue, 1, <Parent>, 1, False, +1.00, 4, 1, 20, , True
-      AutoLayout      =   lblValue, 2, edtValue, 1, False, +1.00, 4, 1, -*kStdControlGapH, , True
+      AutoLayout      =   lblValue, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
       AutoLayout      =   lblValue, 3, lblDate, 4, False, +1.00, 4, 1, 25, , True
+      AutoLayout      =   lblValue, 7, , 0, False, +1.00, 4, 1, 180, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -143,7 +143,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
-      Scope           =   0
+      Scope           =   2
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
@@ -152,9 +152,9 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   232
+      Top             =   263
       Visible         =   True
-      Width           =   265
+      Width           =   180
       _ClosingFired   =   False
    End
    Begin MobileSharingPanel SharingPanelMeasuredData
@@ -168,34 +168,34 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
    Begin MobileButton btnAdd
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   btnAdd, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   btnAdd, 2, <Parent>, 2, False, +1.00, 4, 1, -13, , True
       AutoLayout      =   btnAdd, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   btnAdd, 3, edtValue, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
-      Caption         =   "Save"
+      AutoLayout      =   btnAdd, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   btnAdd, 3, <Parent>, 3, False, +1.00, 4, 1, 315, , True
+      AutoLayout      =   btnAdd, 7, , 0, False, +1.00, 4, 1, 130, , True
+      Caption         =   "Add Value"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
       Enabled         =   False
       Height          =   30
-      Left            =   315
+      Left            =   278
       LockedInPosition=   False
       Scope           =   0
-      TextFont        =   ""
-      TextSize        =   0
+      TextFont        =   "System Bold		"
+      TextSize        =   16
       TintColor       =   &c000000
-      Top             =   272
+      Top             =   315
       Visible         =   True
-      Width           =   100
+      Width           =   130
       _ClosingFired   =   False
    End
    Begin MobileLabel lblBuilding
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblBuilding, 1, <Parent>, 1, False, +1.00, 4, 1, 20, , True
-      AutoLayout      =   lblBuilding, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   lblBuilding, 3, <Parent>, 3, False, +1.00, 4, 1, 84, , True
       AutoLayout      =   lblBuilding, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblBuilding, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   lblBuilding, 3, <Parent>, 3, False, +1.00, 4, 1, 120, , True
+      AutoLayout      =   lblBuilding, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -212,7 +212,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   84
+      Top             =   120
       Visible         =   True
       Width           =   100
       _ClosingFired   =   False
@@ -221,10 +221,10 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblMeterName, 1, lblBuilding, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   lblMeterName, 7, , 0, False, +1.00, 4, 1, 100, , True
-      AutoLayout      =   lblMeterName, 3, lblBuilding, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
       AutoLayout      =   lblMeterName, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterName, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   lblMeterName, 3, lblBuilding, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
+      AutoLayout      =   lblMeterName, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -241,7 +241,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   122
+      Top             =   158
       Visible         =   True
       Width           =   100
       _ClosingFired   =   False
@@ -250,14 +250,14 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   2
-      AutoLayout      =   edtBuilding, 2, <Parent>, 2, False, +1.00, 4, 1, -13, , True
-      AutoLayout      =   edtBuilding, 7, , 0, False, +1.00, 4, 1, 155, , True
       AutoLayout      =   edtBuilding, 11, lblBuilding, 11, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   edtBuilding, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   edtBuilding, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   edtBuilding, 7, , 0, False, +1.00, 4, 1, 155, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   260
+      Left            =   253
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
@@ -270,7 +270,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   84
+      Top             =   120
       Visible         =   True
       Width           =   155
       _ClosingFired   =   False
@@ -279,14 +279,14 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   2
-      AutoLayout      =   edtMeterName, 1, edtBuilding, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   edtMeterName, 7, , 0, False, +1.00, 4, 1, 155, , True
-      AutoLayout      =   edtMeterName, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   edtMeterName, 11, lblMeterName, 11, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterName, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   edtMeterName, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   edtMeterName, 7, , 0, False, +1.00, 4, 1, 155, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
-      Left            =   260
+      Left            =   253
       LineBreakMode   =   0
       LockedInPosition=   False
       MaximumCharactersAllowed=   0
@@ -299,7 +299,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource
       TextFont        =   ""
       TextSize        =   0
       TintColor       =   &c000000
-      Top             =   122
+      Top             =   158
       Visible         =   True
       Width           =   155
       _ClosingFired   =   False
@@ -349,8 +349,8 @@ End
 		Sub ToolbarButtonPressed(button As MobileToolbarButton)
 		  Select Case button.Caption
 		  Case "Add"
-		    Var v As New MainScreen
-		    'Self.PushTo(Screen1)
+		    'Var v As New MainScreen
+		    'Self.PushTo(v)
 		  Case "Chart"
 		    Var v As New ChartScreen
 		    Self.PushTo(v)
@@ -370,18 +370,26 @@ End
 	#tag Method, Flags = &h21
 		Private Sub AddToDatabase()
 		  If App.mdb.Connect Then
-		    Var datum As String = edtDate.SelectedDate.SQLDate 'DateTime.Now.SQLDate 'Current date in SQL format
-		    Var zaehlerstand As Double = Val(edtValue.Text) 'Input from Textfield
+		    Var date As String = edtDate.SelectedDate.SQLDate 'DateTime.Now.SQLDate 'Current date in SQL format
+		    Var metervalue As Double = Val(edtValue.Text) 'Input from Textfield
 		    
 		    Var sql As String = "INSERT INTO measurements (mDate, mValue) VALUES (?, ?)"
 		    Try
-		      App.mdb.ExecuteSQL(sql, datum, zaehlerstand)
+		      App.mdb.ExecuteSQL(sql, date, metervalue)
 		      'MessageBox ("Measured Value successfully saved!")
 		    Catch e As DatabaseException
 		      MessageBox("Error: " + e.Message)
 		    End Try
 		  End If
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function AllowRowEditing(table As iOSMobileTable, section As Integer, row As Integer) As Boolean
+		  // Part of the iOSMobileTableDataSourceEditing interface.
+		  
+		  Return True
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -420,7 +428,7 @@ End
 		  MeterValues.RemoveAllRows
 		  
 		  If App.mdb.Connect Then
-		    Var sql As String = "SELECT mDate, mValue FROM measurements ORDER BY mdate DESC"
+		    Var sql As String = "SELECT ID, mDate, mValue FROM measurements ORDER BY mdate DESC"
 		    Var rs As RowSet = App.mdb.SelectSQL(sql)
 		    
 		    Try
@@ -433,6 +441,7 @@ End
 		      Try
 		        While Not rs.AfterLastRow
 		          Var v As New MeterData
+		          v.Mid = rs.Column("ID").IntegerValue
 		          v.mDate = rs.Column("mDate").DateTimeValue
 		          v.mValue = rs.Column("mValue").IntegerValue
 		          
@@ -507,6 +516,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub RowEditingCompleted(table As iOSMobileTable, section As Integer, row As Integer, action As iOSMobileTable.RowEditingStyles)
+		  // Part of the iOSMobileTableDataSourceEditing interface.
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function SectionCount(table As iOSMobileTable) As Integer
 		  // Part of the iOSMobileTableDataSource interface.
 		  
@@ -538,6 +555,35 @@ End
 		  Else
 		    btnAdd.Enabled = True
 		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DataTable
+	#tag Event
+		Function ApplyActionsForRow(section As Integer, row As Integer) As iOSMobileTableRowAction()
+		  Var actions(0) As iOSMobileTableRowAction
+		  
+		  actions(0) = New iOSMobileTableRowAction(iOSMobileTableRowAction.Styles.Destructive,"Delete","Delete")
+		  
+		  Return Actions
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub RowActionSelected(section As Integer, row As Integer, actionTag As Variant)
+		  Select Case actionTag
+		  Case "Delete"
+		    Var deleteSQL As String = "DELETE FROM measurements WHERE id = ?;"
+		    
+		    Try
+		      App.mdb.ExecuteSQL(deleteSQL, Str(MeterValues(row).Mid))
+		    Catch error As DatabaseException
+		      MessageBox(error.Message)
+		    End Try
+		    
+		    //LoadMeterData
+		    MeterValues.RemoveAt(row)
+		    Me.ReloadDataSource
+		  End Select
 		End Sub
 	#tag EndEvent
 #tag EndEvents

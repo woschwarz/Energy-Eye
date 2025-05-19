@@ -5,7 +5,7 @@ Inherits MobileApplication
 	#tag Event
 		Sub Opening()
 		  mdb = New SQLiteDatabase
-		  mdb.DatabaseFile = SpecialFolder.Documents.Child("energyeye6.sqlite")
+		  mdb.DatabaseFile = SpecialFolder.Documents.Child("energyeye.sqlite")
 		  
 		  If Not mdb.DatabaseFile.Exists Then
 		    
