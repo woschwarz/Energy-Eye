@@ -118,7 +118,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Date"
+      Text            =   "#Strings.Date"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -147,7 +147,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Current Meter Reading"
+      Text            =   "#Strings.CurrentMeterReading"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -172,7 +172,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       AutoLayout      =   btnAdd, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
       AutoLayout      =   btnAdd, 3, <Parent>, 3, False, +1.00, 4, 1, 315, , True
       AutoLayout      =   btnAdd, 7, , 0, False, +1.00, 4, 1, 130, , True
-      Caption         =   "Add Value"
+      Caption         =   "#Strings.AddValue"
       CaptionColor    =   &c007AFF00
       ControlCount    =   0
       Enabled         =   False
@@ -188,14 +188,14 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       Width           =   130
       _ClosingFired   =   False
    End
-   Begin MobileLabel lblBuilding
+   Begin MobileLabel lblMeterPlace
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblBuilding, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblBuilding, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   lblBuilding, 3, <Parent>, 3, False, +1.00, 4, 1, 120, , True
-      AutoLayout      =   lblBuilding, 7, , 0, False, +1.00, 4, 1, 100, , True
+      AutoLayout      =   lblMeterPlace, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterPlace, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
+      AutoLayout      =   lblMeterPlace, 3, <Parent>, 3, False, +1.00, 4, 1, 120, , True
+      AutoLayout      =   lblMeterPlace, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -207,7 +207,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Building"
+      Text            =   "#Strings.MeterPlace"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -223,7 +223,7 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       Alignment       =   0
       AutoLayout      =   lblMeterName, 8, , 0, False, +1.00, 4, 1, 30, , True
       AutoLayout      =   lblMeterName, 1, <Parent>, 1, False, +1.00, 4, 1, *kStdGapCtlToViewH, , True
-      AutoLayout      =   lblMeterName, 3, lblBuilding, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
+      AutoLayout      =   lblMeterName, 3, lblMeterPlace, 4, False, +1.00, 4, 1, *kStdControlGapV, , True
       AutoLayout      =   lblMeterName, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
@@ -246,14 +246,14 @@ Begin MobileScreen MainScreen Implements iOSMobileTableDataSource,iOSMobileTable
       Width           =   100
       _ClosingFired   =   False
    End
-   Begin MobileLabel edtBuilding
+   Begin MobileLabel edtMeterPlace
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   2
-      AutoLayout      =   edtBuilding, 11, lblBuilding, 11, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   edtBuilding, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   edtBuilding, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
-      AutoLayout      =   edtBuilding, 7, , 0, False, +1.00, 4, 1, 155, , True
+      AutoLayout      =   edtMeterPlace, 11, lblMeterPlace, 11, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterPlace, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   edtMeterPlace, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   edtMeterPlace, 7, , 0, False, +1.00, 4, 1, 155, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -369,13 +369,13 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub AddToDatabase()
-		  If App.mdb.Connect Then
+		  If App.imcDB.Connect Then
 		    Var date As String = edtDate.SelectedDate.SQLDate 'DateTime.Now.SQLDate 'Current date in SQL format
 		    Var metervalue As Double = Val(edtValue.Text) 'Input from Textfield
 		    
-		    Var sql As String = "INSERT INTO measurements (mDate, mValue) VALUES (?, ?)"
+		    Var sql As String = "INSERT INTO measurements (meter_id, reading_date, meter_value) VALUES (1, ?, ?)"
 		    Try
-		      App.mdb.ExecuteSQL(sql, date, metervalue)
+		      App.imcDB.ExecuteSQL(sql, date, metervalue)
 		      'MessageBox ("Measured Value successfully saved!")
 		    Catch e As DatabaseException
 		      MessageBox("Error: " + e.Message)
@@ -396,26 +396,26 @@ End
 		Private Sub ExportCSV()
 		  // Database Export to CSV
 		  
-		  If Not App.mdb.Connect Then
+		  If Not App.imcDB.Connect Then
 		    'MessageBox("Database connection failed: " + db.ErrorMessage)
 		    Return
 		  End If
 		  
 		  // Prepare CSV file
 		  Var csvData As String
-		  csvData = "Date,Value" + EndOfLine // Column Heading
+		  csvData = "MeterID;Date;Value" + EndOfLine // Column Heading
 		  
 		  // Read Data
-		  Var sql As String = "SELECT mDate, mValue FROM measurements"
-		  Var rs As RowSet = App.mdb.SelectSQL(sql)
+		  Var sql As String = "SELECT meter_id, reading_date, meter_value FROM measurements WHERE meter_id = 1"
+		  Var rs As RowSet = App.imcDB.SelectSQL(sql)
 		  
 		  If rs <> Nil Then
 		    For Each row As DatabaseRow In rs
-		      csvData = csvData + row.Column("mDate").StringValue + "," + row.Column("mValue").StringValue + EndOfLine
+		      csvData = csvData + row.Column("meter_id").StringValue + ";" + row.Column("reading_date").StringValue + ";" + row.Column("meter_value").StringValue + EndOfLine
 		    Next
 		    rs.Close
 		  Else
-		    MessageBox("No Data found.")
+		    MessageBox(Strings.NoDataFound)
 		    Return
 		  End If
 		  
@@ -427,12 +427,12 @@ End
 		Private Sub LoadData()
 		  MeterValues.RemoveAllRows
 		  
-		  If App.mdb.Connect Then
-		    Var sql As String = "SELECT ID, mDate, mValue FROM measurements ORDER BY mdate DESC"
-		    Var rs As RowSet = App.mdb.SelectSQL(sql)
+		  If App.imcDB.Connect Then
+		    Var sql As String = "SELECT id, reading_date, meter_value FROM measurements WHERE meter_id = 1 ORDER BY reading_date DESC"
+		    Var rs As RowSet = App.imcDB.SelectSQL(sql)
 		    
 		    Try
-		      rs = App.mdb.SelectSQL(sql)
+		      rs = App.imcDB.SelectSQL(sql)
 		    Catch e As DatabaseException
 		      Break
 		    End Try
@@ -441,9 +441,9 @@ End
 		      Try
 		        While Not rs.AfterLastRow
 		          Var v As New MeterData
-		          v.Mid = rs.Column("ID").IntegerValue
-		          v.mDate = rs.Column("mDate").DateTimeValue
-		          v.mValue = rs.Column("mValue").IntegerValue
+		          v.Mid = rs.Column("id").IntegerValue
+		          v.mDate = rs.Column("reading_date").DateTimeValue
+		          v.mValue = rs.Column("meter_value").IntegerValue
 		          
 		          MeterValues.Add(v)
 		          
@@ -464,12 +464,12 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub LoadMeterData()
-		  If App.mdb.Connect Then
-		    Var sql As String = "SELECT * FROM settings WHERE ID = 1;"
-		    Var rs As RowSet = App.mdb.SelectSQL(sql)
+		  If App.imcDB.Connect Then
+		    Var sql As String = "SELECT * FROM meters WHERE id = 1;"
+		    Var rs As RowSet = App.imcDB.SelectSQL(sql)
 		    
 		    Try
-		      rs = App.mdb.SelectSQL(sql)
+		      rs = App.imcDB.SelectSQL(sql)
 		    Catch e As DatabaseException
 		      Break
 		    End Try
@@ -477,8 +477,8 @@ End
 		    If rs <> Nil Then 
 		      Try
 		        While Not rs.AfterLastRow
-		          edtBuilding.Text = rs.Column("sBuilding").StringValue
-		          edtMeterName.Text = rs.Column("sMeterName").StringValue
+		          edtMeterPlace.Text = rs.Column("meter_place").StringValue
+		          edtMeterName.Text = rs.Column("meter_name").StringValue
 		          rs.MoveToNextRow
 		        Wend
 		      Catch e As DatabaseException
@@ -535,7 +535,7 @@ End
 		Private Function SectionTitle(table As iOSMobileTable, section As Integer) As String
 		  // Part of the iOSMobileTableDataSource interface.
 		  
-		  Return "Historical Meter Readings"
+		  Return Strings.HistoricalMeterReadings
 		End Function
 	#tag EndMethod
 
@@ -575,7 +575,7 @@ End
 		    Var deleteSQL As String = "DELETE FROM measurements WHERE id = ?;"
 		    
 		    Try
-		      App.mdb.ExecuteSQL(deleteSQL, Str(MeterValues(row).Mid))
+		      App.imcDB.ExecuteSQL(deleteSQL, Str(MeterValues(row).Mid))
 		    Catch error As DatabaseException
 		      MessageBox(error.Message)
 		    End Try

@@ -12,16 +12,16 @@ Begin MobileScreen ConfigScreen
    TabBarVisible   =   True
    TabIcon         =   0
    TintColor       =   &c000000
-   Title           =   "Settings"
+   Title           =   "#Strings.Settings"
    Top             =   0
-   Begin MobileLabel lblBuilding
+   Begin MobileLabel lblMeterPlace
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblBuilding, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblBuilding, 1, <Parent>, 1, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblBuilding, 3, <Parent>, 3, False, +1.00, 4, 1, 120, , True
-      AutoLayout      =   lblBuilding, 7, , 0, False, +1.00, 4, 1, 100, , True
+      AutoLayout      =   lblMeterPlace, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterPlace, 1, <Parent>, 1, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterPlace, 3, <Parent>, 3, False, +1.00, 4, 1, 120, , True
+      AutoLayout      =   lblMeterPlace, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -33,7 +33,7 @@ Begin MobileScreen ConfigScreen
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Building"
+      Text            =   "#Strings.MeterPlace"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -47,7 +47,7 @@ Begin MobileScreen ConfigScreen
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblMeterName, 1, lblBuilding, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   lblMeterName, 1, lblMeterPlace, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   lblMeterName, 7, , 0, False, +1.00, 4, 1, 100, , True
       AutoLayout      =   lblMeterName, 3, <Parent>, 3, False, +1.00, 4, 1, 177, , True
       AutoLayout      =   lblMeterName, 8, , 0, False, +1.00, 4, 1, 30, , True
@@ -62,7 +62,7 @@ Begin MobileScreen ConfigScreen
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Meter Name"
+      Text            =   "#Strings.MeterName"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -72,17 +72,17 @@ Begin MobileScreen ConfigScreen
       Width           =   100
       _ClosingFired   =   False
    End
-   Begin MobileTextField edtBuilding
+   Begin MobileTextField edtMeterPlace
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   2
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
       AutoCapitalizationType=   0
-      AutoLayout      =   edtBuilding, 7, , 0, False, +1.00, 4, 1, 193, , True
-      AutoLayout      =   edtBuilding, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
-      AutoLayout      =   edtBuilding, 11, lblBuilding, 11, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   edtBuilding, 8, , 0, False, +1.00, 4, 1, 34, , True
+      AutoLayout      =   edtMeterPlace, 7, , 0, False, +1.00, 4, 1, 193, , True
+      AutoLayout      =   edtMeterPlace, 2, <Parent>, 2, False, +1.00, 4, 1, -*kStdGapCtlToViewH, , True
+      AutoLayout      =   edtMeterPlace, 11, lblMeterPlace, 11, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterPlace, 8, , 0, False, +1.00, 4, 1, 34, , True
       BorderStyle     =   3
       ControlCount    =   0
       Enabled         =   False
@@ -116,7 +116,7 @@ Begin MobileScreen ConfigScreen
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
       AutoCapitalizationType=   0
-      AutoLayout      =   edtMeterName, 1, edtBuilding, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterName, 1, edtMeterPlace, 1, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   edtMeterName, 7, , 0, False, +1.00, 4, 1, 193, , True
       AutoLayout      =   edtMeterName, 11, lblMeterName, 11, False, +1.00, 4, 1, 0, , True
       AutoLayout      =   edtMeterName, 8, , 0, False, +1.00, 4, 1, 34, , True
@@ -202,7 +202,7 @@ Begin MobileScreen ConfigScreen
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Meter Unit"
+      Text            =   "#Strings.MeterUnit"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -270,14 +270,14 @@ Begin MobileScreen ConfigScreen
       Width           =   335
       _ClosingFired   =   False
    End
-   Begin MobileLabel lblMeterID
+   Begin MobileLabel lblMeterNumber
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   0
-      AutoLayout      =   lblMeterID, 8, , 0, False, +1.00, 4, 1, 30, , True
-      AutoLayout      =   lblMeterID, 1, lblMeterUnit, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   lblMeterID, 3, <Parent>, 3, False, +1.00, 4, 1, 296, , True
-      AutoLayout      =   lblMeterID, 7, , 0, False, +1.00, 4, 1, 100, , True
+      AutoLayout      =   lblMeterNumber, 8, , 0, False, +1.00, 4, 1, 30, , True
+      AutoLayout      =   lblMeterNumber, 1, lblMeterUnit, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   lblMeterNumber, 3, <Parent>, 3, False, +1.00, 4, 1, 296, , True
+      AutoLayout      =   lblMeterNumber, 7, , 0, False, +1.00, 4, 1, 100, , True
       ControlCount    =   0
       Enabled         =   True
       Height          =   30
@@ -289,7 +289,7 @@ Begin MobileScreen ConfigScreen
       SelectedText    =   ""
       SelectionLength =   0
       SelectionStart  =   0
-      Text            =   "Meter ID"
+      Text            =   "#Strings.MeterNumber"
       TextColor       =   LabelColor
       TextFont        =   ""
       TextSize        =   0
@@ -299,17 +299,17 @@ Begin MobileScreen ConfigScreen
       Width           =   100
       _ClosingFired   =   False
    End
-   Begin MobileTextField edtMeterID
+   Begin MobileTextField edtMeterNumber
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alignment       =   2
       AllowAutoCorrection=   False
       AllowSpellChecking=   False
       AutoCapitalizationType=   0
-      AutoLayout      =   edtMeterID, 1, edtMeterUnit, 1, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   edtMeterID, 7, , 0, False, +1.00, 4, 1, 193, , True
-      AutoLayout      =   edtMeterID, 3, lblMeterID, 3, False, +1.00, 4, 1, 0, , True
-      AutoLayout      =   edtMeterID, 8, , 0, False, +1.00, 4, 1, 34, , True
+      AutoLayout      =   edtMeterNumber, 1, edtMeterUnit, 1, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterNumber, 7, , 0, False, +1.00, 4, 1, 193, , True
+      AutoLayout      =   edtMeterNumber, 3, lblMeterNumber, 3, False, +1.00, 4, 1, 0, , True
+      AutoLayout      =   edtMeterNumber, 8, , 0, False, +1.00, 4, 1, 34, , True
       BorderStyle     =   3
       ControlCount    =   0
       Enabled         =   False
@@ -345,7 +345,7 @@ End
 		  Var button As MobileToolbarButton
 		  
 		  // Set up title bar buttons
-		  button = New MobileToolbarButton(MobileToolbarButton.Types.Done, "Edit")
+		  button = New MobileToolbarButton(MobileToolbarButton.Types.Done, Strings.Edit)
 		  RightNavigationToolbar.AddButton(button)
 		  
 		  LoadData
@@ -356,23 +356,23 @@ End
 		Sub ToolbarButtonPressed(button As MobileToolbarButton)
 		  Select Case button.Caption
 		    
-		  Case "Edit"
-		    edtBuilding.Enabled = True
+		  Case Strings.Edit
+		    edtMeterPlace.Enabled = True
 		    edtMeterName.Enabled = True
 		    edtMeterUnit.Enabled = True
-		    edtMeterID.Enabled = True
+		    edtMeterNumber.Enabled = True
 		    
-		    button.Caption = "Done"
+		    button.Caption = Strings.Done
 		    
-		  Case "Done"
-		    edtBuilding.Enabled = False
+		  Case Strings.Done
+		    edtMeterPlace.Enabled = False
 		    edtMeterName.Enabled = False
 		    edtMeterUnit.Enabled = False
-		    edtMeterID.Enabled = False
+		    edtMeterNumber.Enabled = False
 		    
 		    SaveData
 		    
-		    button.Caption = "Edit"
+		    button.Caption = Strings.Edit
 		    
 		  End Select
 		End Sub
@@ -381,12 +381,12 @@ End
 
 	#tag Method, Flags = &h0
 		Sub LoadData()
-		  If App.mdb.Connect Then
-		    Var sql As String = "SELECT * FROM settings WHERE ID = 1;"
-		    Var rs As RowSet = App.mdb.SelectSQL(sql)
+		  If App.imcDB.Connect Then
+		    Var sql As String = "SELECT * FROM meters WHERE id = 1;"
+		    Var rs As RowSet = App.imcDB.SelectSQL(sql)
 		    
 		    Try
-		      rs = App.mdb.SelectSQL(sql)
+		      rs = App.imcDB.SelectSQL(sql)
 		    Catch e As DatabaseException
 		      Break
 		    End Try
@@ -394,10 +394,10 @@ End
 		    If rs <> Nil Then 
 		      Try
 		        While Not rs.AfterLastRow
-		          edtBuilding.Text = rs.Column("sBuilding").StringValue
-		          edtMeterName.Text = rs.Column("sMeterName").StringValue
-		          edtMeterUnit.Text = rs.Column("sMeterUnit").StringValue
-		          edtMeterID.Text = rs.Column("sMeterID").StringValue
+		          edtMeterPlace.Text = rs.Column("meter_place").StringValue
+		          edtMeterName.Text = rs.Column("meter_name").StringValue
+		          edtMeterUnit.Text = rs.Column("meter_unit").StringValue
+		          edtMeterNumber.Text = rs.Column("meter_number").StringValue
 		          rs.MoveToNextRow
 		        Wend
 		      Catch e As DatabaseException
@@ -417,12 +417,12 @@ End
 		  Var rs As RowSet
 		  
 		  Try
-		    rs = App.mdb.SelectSQL("SELECT * FROM settings WHERE ID = 1;")
+		    rs = App.imcDB.SelectSQL("SELECT * FROM meters WHERE id = 1;")
 		    rs.EditRow
-		    rs.Column("sBuilding").StringValue = edtBuilding.Text
-		    rs.Column("sMeterName").StringValue = edtMeterName.Text
-		    rs.Column("sMeterUnit").StringValue = edtMeterUnit.Text
-		    rs.Column("sMeterID").StringValue = edtMeterID.Text
+		    rs.Column("meter_place").StringValue = edtMeterPlace.Text
+		    rs.Column("meter_name").StringValue = edtMeterName.Text
+		    rs.Column("meter_unit").StringValue = edtMeterUnit.Text
+		    rs.Column("meter_number").StringValue = edtMeterNumber.Text
 		    rs.SaveRow
 		    rs.Close
 		  Catch error As DatabaseException

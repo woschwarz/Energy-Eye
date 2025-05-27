@@ -12,7 +12,7 @@ Begin MobileScreen ChartScreen
    TabBarVisible   =   True
    TabIcon         =   0
    TintColor       =   &c000000
-   Title           =   "Chart"
+   Title           =   "#Strings.Chart"
    Top             =   0
    Begin MeterValueChart MeterValueChart1
       AccessibilityHint=   ""

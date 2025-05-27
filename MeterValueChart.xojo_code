@@ -44,7 +44,7 @@ Inherits MobileChart
 		  Self.RemoveAllDatasets
 		  Self.RemoveAllLabels
 		  
-		  Self.Title = "Monthly Consumption" 'Title 
+		  Self.Title = Strings.MonthlyConsumption 'Title 
 		  Self.Mode = MobileChart.Modes.Bar 'Diagramm-Type
 		  
 		  Var monthValue() As Double
@@ -55,7 +55,7 @@ Inherits MobileChart
 		    Self.AddLabel(months(i))
 		  Next
 		  
-		  Var energyDS As New ChartLinearDataset("Consumption", Color.Blue, True, monthValue)
+		  Var energyDS As New ChartLinearDataset(Strings.Consumption, Color.Blue, True, monthValue)
 		  
 		  // Add DataSet to chart
 		  Self.AddDatasets(energyDS)
@@ -125,6 +125,25 @@ Inherits MobileChart
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetYears() As String()
+		  // Determine how many unique years there are in the measurements table
+		  Var sql As String = "SELECT DISTINCT substr(reading_date, 1, 4) FROM measurements ORDER BY measurements DESC"
+		  Var rs As RowSet = App.imcDB.SelectSQL(sql)
+		  
+		  Var years() As String
+		  
+		  If rs <> Nil Then
+		    For Each year As DatabaseRow In rs
+		      years.Add(year.ColumnAt(0).StringValue)
+		    Next
+		    rs.Close
+		  End If
+		  
+		  Return years
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function InterpolateValueAt(dates() As DateTime, values() As Double, targetDate As DateTime) As Double
 		  If targetDate <= dates(0) Then Return values(0)
 		  If targetDate >= dates(dates.LastIndex) Then Return values(values.LastIndex)
@@ -144,17 +163,17 @@ Inherits MobileChart
 
 	#tag Method, Flags = &h0
 		Sub LoadValues()
-		  If App.mdb.Connect Then
+		  If App.imcDB.Connect Then
 		    Try
 		      // Get All measurements from Database
-		      Var rs As RowSet = App.mdb.SelectSQL("SELECT mDate, mValue FROM measurements ORDER BY mDate")
+		      Var rs As RowSet = App.imcDB.SelectSQL("SELECT reading_date, meter_value FROM measurements WHERE meter_id = 1 ORDER BY reading_date")
 		      
 		      Var data() As DateTime
 		      Var values() As Double
 		      
 		      While Not rs.AfterLastRow
-		        data.Add(DateTime.FromString(rs.Column("mDate").StringValue))
-		        values.Add(rs.Column("mValue").DoubleValue)
+		        data.Add(DateTime.FromString(rs.Column("reading_date").StringValue))
+		        values.Add(rs.Column("meter_value").DoubleValue)
 		        rs.MoveToNextRow
 		      Wend
 		      rs.Close
@@ -173,7 +192,7 @@ Inherits MobileChart
 		      If month.Count >= 2 Then
 		        CreateChart(month, consumption)
 		      Else
-		        MessageBox("Not enough data!")
+		        MessageBox(Strings.NotEnoughData)
 		      End If
 		      
 		    Catch e As DatabaseException

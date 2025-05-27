@@ -4,15 +4,15 @@ Inherits MobileApplication
 	#tag CompatibilityFlags = TargetIOS
 	#tag Event
 		Sub Opening()
-		  mdb = New SQLiteDatabase
-		  mdb.DatabaseFile = SpecialFolder.Documents.Child("energyeye.sqlite")
+		  imcDB = New SQLiteDatabase
+		  imcDB.DatabaseFile = SpecialFolder.Documents.Child("energyeye.sqlite")
 		  
-		  If Not mdb.DatabaseFile.Exists Then
+		  If Not imcDB.DatabaseFile.Exists Then
 		    
 		    Try
-		      mdb.CreateDatabase
-		      mdb.ExecuteSQL(kCreateDatabase)
-		      mdb.ExecuteSQL(kSampleData)
+		      imcDB.CreateDatabase
+		      imcDB.ExecuteSQL(kCreateDatabase)
+		      imcDB.ExecuteSQL(kSampleData)
 		    Catch e As DatabaseException
 		      Break
 		    End Try
@@ -24,13 +24,13 @@ Inherits MobileApplication
 
 
 	#tag Note, Name = ReadMe
-		Energy Eye by Wolfgang Schwarz, Donauwoerth, Germany 
+		Energy Eye - Developed by Wolfgang Schwarz, Germany
 		
 		A program for recording energy consumption data
 		
-		Programmed with Xojo (https://www.xojo.com)
+		Written in Xojo (https://www.xojo.com)
 		
-		
+		For more information, visit: https://github.com/woschwarz
 	#tag EndNote
 
 	#tag Note, Name = ToDo
@@ -43,14 +43,14 @@ Inherits MobileApplication
 
 
 	#tag Property, Flags = &h0
-		mDB As SQLiteDatabase
+		imcDB As SQLiteDatabase
 	#tag EndProperty
 
 
-	#tag Constant, Name = kCreateDatabase, Type = String, Dynamic = False, Default = \"CREATE TABLE measurements (id INTEGER PRIMARY KEY AUTOINCREMENT\x2C mDate TEXT\x2C mValue REAL);\nCREATE TABLE settings (id INTEGER PRIMARY KEY AUTOINCREMENT\x2C sBuilding TEXT\x2C sMeterName TEXT\x2C sMeterUnit TEXT\x2C sMeterID TEXT);", Scope = Public
+	#tag Constant, Name = kCreateDatabase, Type = String, Dynamic = False, Default = \"CREATE TABLE measurements (id INTEGER PRIMARY KEY AUTOINCREMENT\x2C meter_id INTEGER\x2C reading_date TEXT\x2C meter_value REAL);\nCREATE TABLE meters (id INTEGER PRIMARY KEY AUTOINCREMENT\x2C meter_name TEXT\x2C meter_place TEXT\x2C meter_number TEXT\x2C meter_unit TEXT);", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = kSampleData, Type = String, Dynamic = False, Default = \"INSERT INTO settings (id\x2C sBuilding\x2C sMeterName\x2C sMeterUnit) VALUES (1\x2C \"Sweet Home\"\x2C \"Electricity\"\x2C \"kWh\");", Scope = Public
+	#tag Constant, Name = kSampleData, Type = String, Dynamic = False, Default = \"INSERT INTO meters (id\x2C meter_name\x2C meter_place\x2C meter_number\x2C meter_unit) VALUES (1\x2C \"Electricity\"\x2C \"Sweet Home\"\x2C \"A-1234-567\"\x2C \"kWh\");", Scope = Public
 	#tag EndConstant
 
 
